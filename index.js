@@ -7,13 +7,10 @@ const route = require('./routes/routes')
 const cors = require('cors');
 const nodei3 = require('node-id3').Promise
 const fs = require('fs');
-app.use((req, res, next) => {
-    res.header('Access-Control-Allow-Origin', '*');
-    res.header('Access-Control-Allow-Headers', 'Authorization, X-API-KEY, Origin, X-Requested-With, Content-Type, Accept, Access-Control-Allow-Request-Method');
-    res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, DELETE');
-    res.header('Allow', 'GET, POST, OPTIONS, PUT, DELETE');
-    next();
-});
+
+
+app.use(cors({origin:'http://localhost:8080',optionsSuccessStatus:200,methods:"GET, PUT, POST"}))
+
 
 app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
