@@ -7,12 +7,6 @@ const route = require('./routes/routes')
 const cors = require('cors');
 const nodei3 = require('node-id3').Promise
 const fs = require('fs');
-const { nextTick } = require('process');
-
-
-app.use(express.json())
-app.use(express.urlencoded({ extended: false }))
-app.use('/descargas', route)
 app.use((req, res, next) => {
     res.header('Access-Control-Allow-Origin', '*');
     res.header('Access-Control-Allow-Headers', 'Authorization, X-API-KEY, Origin, X-Requested-With, Content-Type, Accept, Access-Control-Allow-Request-Method');
@@ -20,6 +14,11 @@ app.use((req, res, next) => {
     res.header('Allow', 'GET, POST, OPTIONS, PUT, DELETE');
     next();
 });
+
+app.use(express.json())
+app.use(express.urlencoded({ extended: false }))
+app.use('/descargas', route)
+
 app.get('/', (req, res) => {
     res.send('ok')
 })
